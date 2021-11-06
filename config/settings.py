@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'thelibrary.infrastructure.django.apps.TheLibraryApp',
-    'thelibrary.context.shared.infrastructure.django.apps.SharedContextConfigApp'
+    'rest_framework',
+    'thelibrary.infrastructure.django.apps.TheLibraryApp'
 ]
 
 MIDDLEWARE = [

@@ -6,9 +6,9 @@ from typing import Optional
 
 from django.db import migrations, models
 
-from thelibrary.context.shared.infrastructure.django.models.author import Author
-from thelibrary.context.shared.infrastructure.django.models.book import Book
-from thelibrary.context.shared.infrastructure.django.models.category import Category
+from thelibrary.infrastructure.django.models.author import Author
+from thelibrary.infrastructure.django.models.book import Book
+from thelibrary.infrastructure.django.models.category import Category
 
 
 def load_data(apps, schema_editor):

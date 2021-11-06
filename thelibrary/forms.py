@@ -1,4 +1,4 @@
-from django import forms
+""" from django import forms
 from .infrastructure.django.models import DjangoDea
 
 
@@ -10,4 +10,4 @@ class DeaForm(forms.ModelForm):
 class NearestDeaForm(forms.ModelForm):
     class Meta:
         model = DjangoDea
-        fields = ['lat', 'long'] 
+        fields = ['lat', 'long']  """

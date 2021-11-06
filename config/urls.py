@@ -15,18 +15,30 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import url
 from thelibrary import views
+#from api.library.v1.books.views.books_view import BooksView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('devices/', views.index, name='index'),
-    path('devices/nearest/', views.nearest, name='nearest'),
-    path('devices/nearest/<int:lat>', views.nearest, name='nearest'),
-    path('devices/<str:pk>/', views.DeaDetailView.as_view(), name='detail'),
+    path('library/', views.index, name='index')
+
+
+]
+"""     url(
+        r'^library/?$',
+        BooksView.as_view(),
+        name='books_list_view'
+
+    ), """
+
+""" 
+    path('library/nearest/', views.nearest, name='nearest'),
+    path('library/nearest/<int:lat>', views.nearest, name='nearest'),
+    path('library/<str:pk>/', views.DeaDetailView.as_view(), name='detail'),
     path('create/', views.create, name='create'),
 
-    path('devices/orderByLocality',
+    path('library/orderByLocality',
          views.OrderByLocality.as_view(), name='orderByLocality'),
-    path('devices/orderByPostalCode',
-         views.OrderByPostalCode.as_view(), name='orderByPostalCode')
-]
+    path('library/orderByPostalCode',
+         views.OrderByPostalCode.as_view(), name='orderByPostalCode') """

@@ -1,6 +1,6 @@
 openapi: '3.0.2'
 info:
-  title: Desfibrilimaps
+  title: TheLibrary
   version: '0.1'
 servers:
   - url: http://localhost/v1
@@ -67,7 +67,7 @@ paths:
       responses:
         '201':
           description: Created
-  /devices/{device_id}:
+  /library/{device_id}:
       get:
         responses:
           '200':
@@ -78,7 +78,7 @@ paths:
                   $ref: '#/components/schemas/device'
           '404':
             description: Not Found
-  /devices/nearest:
+  /library/nearest:
     post:
       requestBody:
         required: true

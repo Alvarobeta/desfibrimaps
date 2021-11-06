@@ -1,1 +1,3 @@
-from thelibrary.infrastructure.django.models.django_dea import DjangoDea
+from thelibrary.infrastructure.django.models.book import Book
+from thelibrary.infrastructure.django.models.author import Author
+from thelibrary.infrastructure.django.models.category import Category
