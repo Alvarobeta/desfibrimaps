@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'desfibrimaps.infrastructure.django.apps.DesfibrimapsApp'
+    'thelibrary.infrastructure.django.apps.TheLibraryApp',
+    'thelibrary.context.shared.infrastructure.django.apps.SharedContextConfigApp'
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates/desfibrimaps'],
+        'DIRS': ['templates/thelibrary'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,7 +80,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': "desfibrimaps",
+        'NAME': "thelibrary",
         'HOST': 'database',
         'PORT': 3306,
         'USER': os.environ.get('DATABASE_USER'),

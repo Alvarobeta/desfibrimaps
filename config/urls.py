@@ -15,8 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-# from desfibrimaps.views import Deas
-from desfibrimaps import views
+from thelibrary import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
