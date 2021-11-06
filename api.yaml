@@ -1,0 +1,110 @@
+openapi: '3.0.2'
+info:
+  title: Desfibrilimaps
+  version: '0.1'
+servers:
+  - url: http://localhost/v1
+
+components:
+  schemas:
+    device:
+      type: object
+      properties:
+        id:
+          type: string
+          description: uuid
+        locality:
+          type: string
+          description: Municipio del DEA
+          example: "Madrid"
+        address:
+          type: string
+          description: Dirección completa del DEA
+          example: "Eucalipto, 33, 28016 Madrid"
+        device_location:
+          type: string
+          description: ubicación del dispositivo dentro la instalación
+          example: "entrada principal"
+        postal_code:
+          type: string
+          description: código postal
+          example: "28016"
+        lat:
+          type: integer
+          description: latitud sin coma flotante (x*10^-5)
+          example: 435091
+        lon:
+          type: integer
+          description: longitud sin coma flotante (x*10^-5)
+          example: 4435091
+      required: [municipio, direccion, ubicacion_dea, cp, lat, lon]
+  responses:
+    device_ok:
+      description: OK
+      content:
+        'application/json':
+          schema:
+            $ref: '#/components/schemas/device'
+paths:
+  /devices:
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/device'
+    post:
+      requestBody:
+        required: true
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/device'
+      responses:
+        '201':
+          description: Created
+  /devices/{device_id}:
+      get:
+        responses:
+          '200':
+            description: OK
+            content:
+              'application/json':
+                schema:
+                  $ref: '#/components/schemas/device'
+          '404':
+            description: Not Found
+  /devices/nearest:
+    post:
+      requestBody:
+        required: true
+        content:
+          'application/json':
+            schema:
+                type: object
+                properties:
+                  lat:
+                    type: integer
+                    description: latitud sin coma flotante (x*10^-5)
+                    example: 435091
+                  lon:
+                    type: integer
+                    description: longitud sin coma flotante (x*10^-5)
+                    example: 4435091
+      responses:
+        '200':
+          $ref: '#/components/responses/device_ok'
+        '404':
+          description: Not Found
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                    example: "No near device found"

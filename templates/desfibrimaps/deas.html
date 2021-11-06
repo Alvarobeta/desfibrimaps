@@ -1,0 +1,53 @@
+<!-- <h1>DEAS List</h1>
+{% if deas %}
+
+    {% for dea in deas %}
+    <li>
+        <h3>ID:{{dea.id}}</h3>
+    </li>
+    {% endfor %}
+
+{% else %}
+    <p>No deas found.</p>
+{% endif %} -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Desfibrimaps</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Deas</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Locality</th>
+          <th>Address</th>
+          <th>Device location</th>
+          <th>Postal code</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for dea in deas %}
+        <tr>
+          <td>{{dea.id}}</td>
+          <td>{{dea.locality}}</td>
+          <td>{{dea.address}}</td>
+          <td>{{dea.device_location}}</td>
+          <td>{{dea.postal_code}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>

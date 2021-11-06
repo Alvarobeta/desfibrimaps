@@ -1,0 +1,30 @@
+version: "3.2"
+services:
+  database:
+    image: mysql:5.7
+    volumes:
+    - exercise-sql-data:/var/lib/mysql
+    - ./docker-data/init_sql.sql:/data/application/init.sql
+    ports:
+    - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+    command: --init-file /data/application/init.sql
+
+  web_service:
+    build:
+      context: ./
+      dockerfile: ./docker-data/Dockerfile
+    volumes:
+      - ./:/app
+    environment:
+      DATABASE_PASSWORD: root
+      DATABASE_USER: root
+    ports:
+    - 8000:8000
+    depends_on:
+      - database
+
+volumes:
+  exercise-sql-data:
