@@ -1,0 +1,2 @@
+modules:
+  - 'thelibrary.context.library.infrastructure.di.services_module'

@@ -1,0 +1,2 @@
+class BookId(int):
+    pass
