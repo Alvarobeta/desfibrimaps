@@ -17,28 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
 from thelibrary import views
-#from api.library.v1.books.views.books_view import BooksView
+from api.library.v1.books.views.books_view import BooksView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('library/', views.index, name='index')
-
-
-]
-"""     url(
-        r'^library/?$',
+    path('library/', views.index, name='index'),
+    path('library/books/<str:book_id>',
         BooksView.as_view(),
         name='books_list_view'
-
-    ), """
-
-""" 
-    path('library/nearest/', views.nearest, name='nearest'),
-    path('library/nearest/<int:lat>', views.nearest, name='nearest'),
-    path('library/<str:pk>/', views.DeaDetailView.as_view(), name='detail'),
-    path('create/', views.create, name='create'),
-
-    path('library/orderByLocality',
-         views.OrderByLocality.as_view(), name='orderByLocality'),
-    path('library/orderByPostalCode',
-         views.OrderByPostalCode.as_view(), name='orderByPostalCode') """
+    )
+]

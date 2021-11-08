@@ -17,10 +17,6 @@ def load_data(apps, schema_editor):
     file_path = f'{os.path.abspath(os.path.dirname(__name__))}/data/the_library.json'
     with open(file_path, 'r') as the_library_json:
         json_data = json.load(the_library_json)
-    
-    print('g '*100)
-    print(json_data)
-    print('g '*100)
 
     for author_data in json_data.get('authors'):
         Author.objects.create(
@@ -47,6 +43,7 @@ def load_data(apps, schema_editor):
         book = Book.objects.create(
             id=uuid.uuid4(),
             isbn=book_data.get('isbn'),
+            title= book_data.get('title'),
             author=author,
             description=book_data.get('description')
         )
@@ -95,7 +92,7 @@ class Migration(migrations.Migration):
                 ('author', models.ForeignKey('Author',
                  db_column='author_id', on_delete=models.SET_NULL, null=True)),
                 ('description', models.CharField(max_length=500)),
-                ('categories', models.ManyToManyField('Category')),
+                ('categories', models.ManyToManyField( to='thelibrary.Category')),
             ],
             options={
                 'db_table': 'books',
