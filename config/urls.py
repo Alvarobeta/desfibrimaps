@@ -17,13 +17,23 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
 from thelibrary import views
+from api.library.v1.books.views.book_view import BookView
 from api.library.v1.books.views.books_view import BooksView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('library/', views.index, name='index'),
-    path('library/books/<str:book_id>',
-        BooksView.as_view(),
+    # path('library/books/',
+    #     BooksView.as_view(),
+    #     name='create_book'
+    # ),
+    path('library/books/<str:book_id>/',
+        BookView.as_view(),
         name='books_list_view'
-    )
+    ),
+    url(
+        r'^library/books/?$',
+        BooksView.as_view(),
+        name='create_book'
+    ),
 ]

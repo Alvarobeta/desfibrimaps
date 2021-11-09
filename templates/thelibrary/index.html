@@ -15,6 +15,11 @@
             <h3 class="round3">Books list</h3>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12 col-xs-12 col-sm-12">
+            <a href="{% url 'create_book' %}">New book</a>
+        </div>
+    </div>
 
     <!-- <div class="row">
         <div class="col-md-1 col-xs-1 col-sm-1"></div>
@@ -68,20 +73,20 @@
         <tbody>
             <tr>
                 <td style="width: 3%;">
-                    <a href="{% url 'books_list_view' book.id %}">Detail </a> 
+                    <a href="{% url 'books_list_view' book.id %}">Detail</a> 
                     <span class="badge"></span>
                 </td>
                 <td style="width: 10%;">{{book.isbn}}</td>
                 <td style="width: 20%;">{{book.title}}</td>
                 <td style="width: 15%;">{{book.author.full_name}}</td>
-                <td style="width: 15%;">category mock</td>
+                <td style="width: 15%;">{{book.get_categories_names}}</td>
                 <td style="width: 37%;">{{book.description}}</td>
             </tr>
         </tbody> 
         {% endfor %}
     </table>
     {% else %}
-    <span>No matches</span>
+    <span>There is no books yet.</span>
     {% endif %}
     <div class="pagination">
         <span class="step-links">

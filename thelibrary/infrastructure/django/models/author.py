@@ -7,7 +7,6 @@ class Author(models.Model):
         db_table = "authors"
         ordering = ['full_name']
 
-    id = models.UUIDField(primary_key=True)
     full_name = models.CharField(max_length=100)
     pseudonym = models.CharField(blank=True, max_length=100, null=True)
     born = models.DateField(blank=True, null=True)
