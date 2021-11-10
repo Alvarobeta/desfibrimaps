@@ -1,5 +1,8 @@
 from django.db import models
+from typing import Optional, List
 
+from thelibrary.infrastructure.django.models.author import Author
+from thelibrary.infrastructure.django.models.category import Category
 
 class Book(models.Model):
 

@@ -17,7 +17,7 @@
     </div>
     <div class="row">
         <div class="col-md-12 col-xs-12 col-sm-12">
-            <a href="{% url 'create_book' %}">New book</a>
+            <a href="{% url 'book_create' %}">New book</a>
         </div>
     </div>
 
@@ -73,7 +73,7 @@
         <tbody>
             <tr>
                 <td style="width: 3%;">
-                    <a href="{% url 'books_list_view' book.id %}">Detail</a> 
+                    <a href="{% url 'book_view' book.id %}">Detail</a> 
                     <span class="badge"></span>
                 </td>
                 <td style="width: 10%;">{{book.isbn}}</td>

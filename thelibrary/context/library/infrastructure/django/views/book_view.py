@@ -3,16 +3,23 @@ import logging
 from rest_framework import serializers, response, status
 from rest_framework.views import APIView
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from thelibrary.context.library.application.get_book import GetBookHandler
+from thelibrary.context.library.application.delete_book import DeleteBookHandler
+from thelibrary.context.library.domain.book import book_repository
 from thelibrary.context.library.infrastructure.django.repositories.book_repository_django import BookRepositoryDjango
 
 
 class BookView(APIView):
     def get(self, request, book_id: int):
-        handler = GetBookHandler(book_repository=BookRepositoryDjango())
-        result = handler(book_id=book_id)    
+        get_book_handler = GetBookHandler(book_repository=BookRepositoryDjango())
+        result = get_book_handler(book_id=book_id)    
 
         return render(request, 'book_detail.html', {'page_obj': result})
         
+    def delete(self, request, book_id: int):
+        delete_book_handler = DeleteBookHandler(book_repository=BookRepositoryDjango())
+        delete_book_handler(book_id=book_id)
+
+        return redirect('index')

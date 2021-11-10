@@ -18,22 +18,27 @@ from django.urls import path
 from django.conf.urls import url
 from thelibrary import views
 from api.library.v1.books.views.book_view import BookView
+from api.library.v1.books.views.book_update_view import BookUpdateView
 from api.library.v1.books.views.books_view import BooksView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('library/', views.index, name='index'),
-    # path('library/books/',
-    #     BooksView.as_view(),
-    #     name='create_book'
-    # ),
     path('library/books/<str:book_id>/',
         BookView.as_view(),
-        name='books_list_view'
+        name='book_view'
+    ),
+    path('library/books/<str:book_id>/update/',
+        BookUpdateView.as_view(),
+        name='book_update'
+    ),
+    path('library/books/<str:book_id>/delete/',
+        BookView.as_view(),
+        name='book_delete'
     ),
     url(
         r'^library/books/?$',
         BooksView.as_view(),
-        name='create_book'
+        name='book_create'
     ),
 ]
