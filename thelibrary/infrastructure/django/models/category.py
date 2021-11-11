@@ -13,7 +13,7 @@ class Category(models.Model):
     description = models.CharField(blank=True, max_length=300, null=True)
 
 
-    def get_absolute_url(self):
+    def get_detail_url(self):
         """Returns the url to access a particular category instance."""
         return reverse('category_view', args=[self.id])
 

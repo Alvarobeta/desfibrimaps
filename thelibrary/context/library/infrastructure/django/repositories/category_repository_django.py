@@ -15,6 +15,9 @@ class CategoryRepositoryDjango(CategoryRepository):
 
         return category if category else None
     
+    def count(self) -> int:
+        return Category.objects.all().count()
+
     def update(self, category: Category) -> None:
         Category.objects.filter(id=category.id).update(
             name=category.name,

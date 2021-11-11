@@ -18,7 +18,7 @@ class AuthorUpdateView(APIView):
         response = update_author_handler(request=request, author_id=author_id)  
         
         if response.status_code != 201:
-            error_message = "Something went wrong with the user creation, please try again"
+            error_message = "Something went wrong with the author update, please check all required fields."
             return render(request, 'author_update.html', {'form': AuthorForm(), 'error_message': error_message})
 
         return render(request, 'author_detail.html', {'page_obj': response.data['author']})

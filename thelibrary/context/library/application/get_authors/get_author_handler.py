@@ -10,5 +10,5 @@ class GetAuthorHandler:
 
 
     def __call__(self, author_id: int):        
-        author = self.author_repository.find_one_by_id(self, author_id=author_id)
+        author = self.author_repository.find_one_by_id(author_id=author_id)
         return author

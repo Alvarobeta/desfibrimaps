@@ -16,7 +16,7 @@ class Author(models.Model):
     died = models.DateField(blank=True, null=True, default='')
 
 
-    def get_absolute_url(self):
+    def get_detail_url(self):
         """Returns the url to access a particular author instance."""
         return reverse('author_view', args=[self.id])
 

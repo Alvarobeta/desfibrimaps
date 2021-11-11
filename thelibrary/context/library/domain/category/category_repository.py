@@ -14,6 +14,10 @@ class CategoryRepository(ABC):
         pass
 
     @abstractmethod
+    def count(self) -> int:
+        pass
+    
+    @abstractmethod
     def update(self, category: Category) -> None:
         pass
     

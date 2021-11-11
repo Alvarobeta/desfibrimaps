@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 from django.shortcuts import render, redirect
-from thelibrary.context.library.application.get_book import GetBookHandler
+from thelibrary.context.library.application.get_books import GetBookHandler
 from thelibrary.context.library.application.delete_book import DeleteBookHandler
 from thelibrary.context.library.infrastructure.django.repositories.book_repository_django import BookRepositoryDjango
 
@@ -16,4 +16,4 @@ class BookView(APIView):
         delete_book_handler = DeleteBookHandler(book_repository=BookRepositoryDjango())
         delete_book_handler(book_id=book_id)
 
-        return redirect('index')
+        return redirect('books_view')

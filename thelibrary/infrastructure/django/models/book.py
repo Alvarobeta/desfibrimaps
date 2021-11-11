@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Book(models.Model):
@@ -13,7 +14,15 @@ class Book(models.Model):
     description = models.CharField(max_length=500)
     categories = models.ManyToManyField('Category')
     
+
+    def get_detail_url(self):
+        """Returns the url to access a particular book instance."""
+        return reverse('book_view', args=[self.id])
     
+    # def get_delete_url(self):
+    #     """Returns the url to access a particular book instance."""
+    #     return reverse('book_delete', args=[self.id])
+        
     def get_categories_names(self):
         categories = ', '.join([category.name for category in self.categories.all()])
         return categories

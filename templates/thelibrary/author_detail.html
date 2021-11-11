@@ -1,39 +1,67 @@
 {% extends 'base.html' %}
-{% block content %}
-  <div class="container-fluid">    
-    <div class="row">
-      <div class="col-md-12 col-xs-12 col-sm-12">
-        <h1>Author detail</h1>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Full name</th>
-              <th>Pseudonym</th>
-              <th>Born</th>
-              <th>Died</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{{page_obj.full_name}}</td>
-              <td>{{page_obj.pseudonym}}</td>
-              <td>{{page_obj.born}}</td>
-              <td>{{page_obj.died}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12 col-xs-12 col-sm-12">
-        <a href="{% url 'author_update' page_obj.id %}">Edit Author</a>
-      </div>  
-      <div class="col-md-12 col-xs-12 col-sm-12">
-        <form action="{% url 'author_delete' page_obj.id %}" method="POST">
-          {% csrf_token %}
-          <input type="submit" action="" value="Delete author" />
-        </form>
-      </div>      
-    </div>
+{% block content %}  
+<h1>Author detail</h1>
+<div class="row">
+  <div class="col-md-2 col-xs-12 col-sm-2">
+    <span>Full name:</span>
   </div>
+  <div class="col-md-2 col-xs-2 col-sm-2">
+    {{page_obj.full_name}}
+  </div>
+</div>
+</br>
+
+<div class="row">
+  <div class="col-md-2 col-xs-12 col-sm-2">
+    <span>Pseudonym:</span>
+  </div>
+  <div class="col-md-2 col-xs-2 col-sm-2">
+    {%if page_obj.pseudonym%}
+      {{page_obj.pseudonym}}
+    {% else %}
+      -
+    {% endif %}
+  </div>
+</div>
+</br>
+
+<div class="row">
+  <div class="col-md-2 col-xs-12 col-sm-2">
+    <span>Born:</span>
+  </div>
+  <div class="col-md-2 col-xs-2 col-sm-2">
+    {{page_obj.born}}
+  </div>
+</div>
+</br>
+
+<div class="row">
+  <div class="col-md-2 col-xs-12 col-sm-2">
+    <span>Died:</span>
+  </div>
+  <div class="col-md-2 col-xs-2 col-sm-2">
+    {%if page_obj.died%}
+      {{page_obj.died}}
+    {% else %}
+      -
+    {% endif %}
+  </div>
+</div>
+</br>
+
+<div class="row">
+  <div class="col-md-12 col-xs-12 col-sm-12">    
+    <a class="btn btn-large btn-primary" href="{% url 'author_update' page_obj.id %}">Edit author</a>
+  </div>       
+</div>
+</br>
+
+<div class="row">
+  <div class="col-md-12 col-xs-12 col-sm-12">
+    <form action="{% url 'author_delete' page_obj.id %}" method="POST">
+      {% csrf_token %}
+      <input class="btn btn-large btn-secondary" type="submit" action="" value="Delete author" />
+    </form>
+  </div>  
+</div>
 {% endblock %}

@@ -10,5 +10,5 @@ class GetBookHandler:
 
 
     def __call__(self, book_id: int):        
-        book = self.book_repository.find_one_by_id(self, book_id=book_id)
+        book = self.book_repository.find_one_by_id(book_id=book_id)
         return book

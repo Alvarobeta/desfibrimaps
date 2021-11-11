@@ -19,7 +19,7 @@ from django.conf.urls import url
 from thelibrary import views
 from api.library.v1.books.views.book_view import BookView
 from api.library.v1.books.views.book_update_view import BookUpdateView
-from api.library.v1.books.views.books_view import BooksView
+from api.library.v1.books.views.books_view import BooksListView, BooksView
 from api.library.v1.authors.views.authors_view import AuthorsListView, AuthorsView
 from api.library.v1.authors.views.author_view import AuthorView
 from api.library.v1.authors.views.author_update_view import AuthorUpdateView
@@ -31,6 +31,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('library/', views.index, name='index'),
     
+    url(
+        r'^library/books/?$',
+        BooksListView.as_view(),
+        name='books_view'
+    ),
     url(r'^library/book/(?P<book_id>[0-9]+)/?$',
         BookView.as_view(),
         name='book_view'

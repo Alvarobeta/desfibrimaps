@@ -18,7 +18,7 @@ class CategoryUpdateView(APIView):
         response = update_category_handler(request=request, category_id=category_id)  
         
         if response.status_code != 201:
-            error_message = "Something went wrong with the user creation, please try again"
+            error_message = "Something went wrong with the category update, please check all required fields."
             return render(request, 'category_update.html', {'form': CategoryForm(), 'error_message': error_message})
 
         return render(request, 'category_detail.html', {'page_obj': response.data['category']})

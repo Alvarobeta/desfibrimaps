@@ -15,6 +15,9 @@ class AuthorRepositoryDjango(AuthorRepository):
 
         return author if author else None
     
+    def count(self) -> int:
+        return Author.objects.all().count()
+
     def update(self, author: Author) -> None:
         Author.objects.filter(id=author.id).update(
             full_name=author.full_name,
