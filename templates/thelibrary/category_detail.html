@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container-fluid">    
+    <div class="row">
+      <div class="col-md-12 col-xs-12 col-sm-12">
+        <h1>Category detail</h1>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{page_obj.name}}</td>
+              <td>{{page_obj.description}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-xs-12 col-sm-12">
+        <a href="{% url 'category_update' page_obj.id %}">Edit Category</a>
+      </div>  
+      <div class="col-md-12 col-xs-12 col-sm-12">
+        <form action="{% url 'category_delete' page_obj.id %}" method="POST">
+          {% csrf_token %}
+          <input type="submit" action="" value="Delete category" />
+        </form>
+      </div>      
+    </div>
+  </div>
+{% endblock %}

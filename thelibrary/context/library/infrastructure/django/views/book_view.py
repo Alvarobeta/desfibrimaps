@@ -1,13 +1,7 @@
-import logging
-
-from rest_framework import serializers, response, status
 from rest_framework.views import APIView
-
 from django.shortcuts import render, redirect
-
 from thelibrary.context.library.application.get_book import GetBookHandler
 from thelibrary.context.library.application.delete_book import DeleteBookHandler
-from thelibrary.context.library.domain.book import book_repository
 from thelibrary.context.library.infrastructure.django.repositories.book_repository_django import BookRepositoryDjango
 
 

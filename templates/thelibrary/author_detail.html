@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container-fluid">    
+    <div class="row">
+      <div class="col-md-12 col-xs-12 col-sm-12">
+        <h1>Author detail</h1>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Full name</th>
+              <th>Pseudonym</th>
+              <th>Born</th>
+              <th>Died</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{page_obj.full_name}}</td>
+              <td>{{page_obj.pseudonym}}</td>
+              <td>{{page_obj.born}}</td>
+              <td>{{page_obj.died}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-xs-12 col-sm-12">
+        <a href="{% url 'author_update' page_obj.id %}">Edit Author</a>
+      </div>  
+      <div class="col-md-12 col-xs-12 col-sm-12">
+        <form action="{% url 'author_delete' page_obj.id %}" method="POST">
+          {% csrf_token %}
+          <input type="submit" action="" value="Delete author" />
+        </form>
+      </div>      
+    </div>
+  </div>
+{% endblock %}

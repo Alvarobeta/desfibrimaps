@@ -1,1 +1,2 @@
 from .book_repository_django import BookRepositoryDjango
+from .author_repository_django import AuthorRepositoryDjango

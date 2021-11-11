@@ -1,2 +1,0 @@
-class BookId(int):
-    pass

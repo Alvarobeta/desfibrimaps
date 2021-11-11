@@ -1,6 +1,5 @@
-from typing import Optional, List, Set
-
-from thelibrary.context.library.domain.book import BookId, BookRepository
+from typing import Optional, List
+from thelibrary.context.library.domain.book import BookRepository
 from thelibrary.infrastructure.django.models.author import Author
 from thelibrary.infrastructure.django.models.book import Book
 from thelibrary.infrastructure.django.models.category import Category
@@ -8,7 +7,7 @@ from thelibrary.infrastructure.django.models.category import Category
 
 class BookRepositoryDjango(BookRepository):
 
-    def find_one_by_id(self, book_id: BookId) -> Optional[Book]:
+    def find_one_by_id(self, book_id: int) -> Optional[Book]:
         book = Book.objects.filter(pk=book_id).first()
 
         return book if book else None

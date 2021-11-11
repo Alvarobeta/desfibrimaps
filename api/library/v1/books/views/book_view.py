@@ -1,5 +1,4 @@
 from rest_framework.views import APIView
-
 from thelibrary.context.library.infrastructure.django.views.book_view import BookView as BookViewCore
 
 

@@ -1,16 +1,10 @@
-import logging
-
-from rest_framework import serializers, response, status
 from rest_framework.views import APIView
-
-from django.shortcuts import render, redirect
-
+from django.shortcuts import render
 from thelibrary.context.library.application.get_book import GetBookHandler
-from thelibrary.context.library.application.delete_book import DeleteBookHandler
 from thelibrary.context.library.application.update_book import UpdateBookHandler
 from thelibrary.context.library.infrastructure.django.repositories.book_repository_django import BookRepositoryDjango
-
 from api.library.v1.books.views.forms import BookForm
+
 
 class BookUpdateView(APIView):
     def get(self, request, book_id: int):

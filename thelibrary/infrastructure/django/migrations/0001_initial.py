@@ -29,7 +29,7 @@ def load_data(apps, schema_editor):
     for category_data in json_data.get('categories'):
         Category.objects.create(
             name=category_data.get('name'),
-            description=category_data.get('category')
+            description=category_data.get('description')
         )
 
     for book_data in json_data.get('books'):
@@ -61,8 +61,8 @@ class Migration(migrations.Migration):
                 ('full_name', models.CharField(max_length=100)),
                 ('pseudonym', models.CharField(
                     blank=True, max_length=100, null=True)),
-                ('born', models.DateField(blank=True, null=True)),
-                ('died', models.DateField(blank=True, null=True)),
+                ('born', models.DateField()),
+                ('died', models.DateField(blank=True, null=True, default='')),
             ],
             options={
                 'db_table': 'authors',

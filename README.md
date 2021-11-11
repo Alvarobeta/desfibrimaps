@@ -23,10 +23,11 @@ Soy Manuel de Doofinder. Como ya te comenté en la entrevista el siguiente paso 
 El objetivo del ejercicio es desarrollar una aplicación para gestionar el catálogo de libros de una biblioteca. 
 Como usuario, debería poder 
 
-!!!! consultar el catálogo, 
-!!!! dar de alta nuevos libros y 
-!!!! modificar o 
-!!!! eliminar los existentes, y entidades relacionadas, en una o sucesivas sesiones de trabajo.
+DONE- consultar el catálogo, 
+DONE - dar de alta nuevos libros y 
+DONE - modificar o 
+DONE - eliminar los existentes, 
+(Depending on domain decision) y entidades relacionadas, en una o sucesivas sesiones de trabajo.
 
 Un libro deberá tener al menos la siguiente información:
 -ISBN

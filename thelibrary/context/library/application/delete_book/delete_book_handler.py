@@ -1,8 +1,5 @@
-# from injector import inject
-import thelibrary
-from thelibrary.context.library.domain.book import BookRepository, BookId
-from thelibrary.infrastructure.django.models.book import Book
-from thelibrary.context.library.infrastructure.django.repositories.book_repository_django import BookRepositoryDjango
+from thelibrary.context.library.domain.book import BookRepository
+
 
 class DeleteBookHandler:
     def __init__(
@@ -12,7 +9,7 @@ class DeleteBookHandler:
         self.book_repository = book_repository
 
 
-    def __call__(self, book_id: BookId):   
+    def __call__(self, book_id: int):   
         
         book = self.book_repository.find_one_by_id(book_id=book_id)
         book.delete()
