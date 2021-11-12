@@ -18,10 +18,24 @@ class AuthorRepositoryDjango(AuthorRepository):
     def count(self) -> int:
         return Author.objects.all().count()
 
-    def update(self, author: Author) -> None:
-        Author.objects.filter(id=author.id).update(
-            full_name=author.full_name,
-            pseudonym=author.pseudonym,
-            born=author.born,
-            died=author.died
+    def create(self, request) -> Author:
+        author = Author.objects.create(
+            full_name=request.data['full_name'],
+            pseudonym=request.data['pseudonym'],
+            born=request.data['born'],
+            died=request.data['died'] if request.data['died'] else None
         )
+
+        return author
+
+    def update(self, request, author: Author) -> None:
+        author.update(
+            full_name=request.data['full_name'],
+            pseudonym=request.data['pseudonym'],
+            born=request.data['born'] if request.data['born'] else None,
+            died=request.data['died'] if request.data['died'] else None
+        )
+        author.save()
+
+    def delete(self, author: Author) -> None:
+        author.delete()

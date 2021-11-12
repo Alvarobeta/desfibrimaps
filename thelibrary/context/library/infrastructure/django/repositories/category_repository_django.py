@@ -18,8 +18,20 @@ class CategoryRepositoryDjango(CategoryRepository):
     def count(self) -> int:
         return Category.objects.all().count()
 
-    def update(self, category: Category) -> None:
-        Category.objects.filter(id=category.id).update(
-            name=category.name,
-            description=category.description
+    def create(self, request) -> Category:
+        category = Category.objects.create(
+            name=request.data['name'],
+            description=request.data['description'] if request.data['description'] else None
         )
+
+        return category
+
+    def update(self, request, category: Category) -> None:
+        category.update(            
+            name=request.data['name'],
+            description=request.data['description']
+        )
+        category.save()
+
+    def delete(self, category: Category) -> None:
+        category.delete()

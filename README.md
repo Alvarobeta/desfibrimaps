@@ -11,7 +11,10 @@ La primera vez que levantes el servicio, puedes cargar datos y la estructura de 
 
 Si falta algún paquete que se haya saltado el `docker-compose up`, puedes usar `docker-compose build` para instalar los requirements.
 
+Para ejecutar los test, simplemente lanza `docker-compose run web_service python manage.py test`
+
 Cuando hayas terminado, recuerda que puedes limpiar todos los contenedores y datos con `docker-compose rm -v -s -f` (y recuerda limpiar las imagenes de vez en cuando!)
+
 
 >ENUNCIADO:
 Hola Alvaro,
@@ -21,11 +24,11 @@ Soy Manuel de Doofinder. Como ya te comenté en la entrevista el siguiente paso 
 El objetivo del ejercicio es desarrollar una aplicación para gestionar el catálogo de libros de una biblioteca. 
 Como usuario, debería poder 
 
-DONE- consultar el catálogo, 
-DONE - dar de alta nuevos libros y 
-DONE - modificar o 
-DONE - eliminar los existentes, 
-(Depending on buisiness decision) y entidades relacionadas, en una o sucesivas sesiones de trabajo.
+- DONE consultar el catálogo, 
+- DONE - dar de alta nuevos libros y 
+- DONE - modificar o 
+- DONE - eliminar los existentes, 
+- (Depending on business decision) y entidades relacionadas, en una o sucesivas sesiones de trabajo.
 
 Un libro deberá tener al menos la siguiente información:
 -ISBN
@@ -56,3 +59,4 @@ IMPORTANTE: La aplicación a entregar debe incluir un fichero README con instruc
 Si tienes cualquier duda, problema, o necesitas algo de orientación puedes escribirme cuando quieras.
 
 Un saludo.
+

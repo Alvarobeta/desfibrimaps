@@ -18,11 +18,7 @@ class Book(models.Model):
     def get_detail_url(self):
         """Returns the url to access a particular book instance."""
         return reverse('book_view', args=[self.id])
-    
-    # def get_delete_url(self):
-    #     """Returns the url to access a particular book instance."""
-    #     return reverse('book_delete', args=[self.id])
-        
+            
     def get_categories_names(self):
         categories = ', '.join([category.name for category in self.categories.all()])
         return categories

@@ -20,8 +20,4 @@ class GetIndexHandler:
         books_count = self.book_repository.count()
         categories_count = self.category_repository.count()
 
-        print('authors: ', authors_count)
-        print('categories: ', books_count)
-        print('books: ', categories_count)
-
         return {'authors_count':authors_count, 'books_count':books_count, 'categories_count':categories_count}

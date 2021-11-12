@@ -20,6 +20,17 @@ class BookRepositoryDjango(BookRepository):
     def count(self) -> int:
         return Book.objects.all().count()
 
+    def create(self, request, author: Author, categories: Category) -> Book:
+        book = Book.objects.create(
+            isbn=request.data['isbn'],
+            title=request.data['title'],
+            description=request.data['description'],
+            author=author
+        )
+        book.categories.set(categories)
+
+        return book
+
     def update(self, request, book: Book, author: Author, categories: List[Category]) -> None:
         book.isbn = request.data['isbn']
         book.title = request.data['title']
@@ -27,3 +38,6 @@ class BookRepositoryDjango(BookRepository):
         book.author = author
         book.categories.set(categories)
         book.save()
+
+    def delete(self, book: Book) -> None:
+        book.delete()

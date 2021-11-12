@@ -12,4 +12,4 @@ class DeleteBookHandler:
     def __call__(self, book_id: int):   
         
         book = self.book_repository.find_one_by_id(book_id=book_id)
-        book.delete()
+        self.book_repository.delete(book)
