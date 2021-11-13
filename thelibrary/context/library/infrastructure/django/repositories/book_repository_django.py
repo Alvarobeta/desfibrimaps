@@ -20,21 +20,22 @@ class BookRepositoryDjango(BookRepository):
     def count(self) -> int:
         return Book.objects.all().count()
 
-    def create(self, request, author: Author, categories: Category) -> Book:
+    def create(self, book: dict, author: Author, categories: Category) -> Book:
         book = Book.objects.create(
-            isbn=request.data['isbn'],
-            title=request.data['title'],
-            description=request.data['description'],
+            isbn=book['isbn'],
+            title=book['title'],
+            description=book['description'],
             author=author
         )
+
         book.categories.set(categories)
 
         return book
 
-    def update(self, request, book: Book, author: Author, categories: List[Category]) -> None:
-        book.isbn = request.data['isbn']
-        book.title = request.data['title']
-        book.description = request.data['description']
+    def update(self, book_body: dict, book: Book, author: Author, categories: List[Category]) -> None:
+        book.isbn = book_body['isbn']
+        book.title = book_body['title']
+        book.description = book_body['description']
         book.author = author
         book.categories.set(categories)
         book.save()

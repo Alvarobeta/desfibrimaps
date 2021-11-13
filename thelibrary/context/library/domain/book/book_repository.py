@@ -20,11 +20,11 @@ class BookRepository(ABC):
         pass
     
     @abstractmethod
-    def create(self, author: Author, categories: Category) -> Book:
+    def create(self, book: dict, author: Author, categories: Category) -> Book:
         pass
     
     @abstractmethod
-    def update(self, book: Book, author: Author, categories: Category) -> None:
+    def update(self, book_body: dict, book: Book, author: Author, categories: Category) -> None:
         pass
     
     @abstractmethod

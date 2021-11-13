@@ -10,6 +10,10 @@ class CategoryRepository(ABC):
         pass
 
     @abstractmethod
+    def find_categories_by_ids(self, category_ids: List[str]) -> Optional[List[Category]]:
+        pass
+
+    @abstractmethod
     def find_one_by_id(self, category_id: int) -> Optional[Category]:
         pass
 
@@ -18,11 +22,11 @@ class CategoryRepository(ABC):
         pass
 
     @abstractmethod
-    def create(self) -> Category:
+    def create(self, category: dict) -> Category:
         pass
     
     @abstractmethod
-    def update(self, category: Category) -> None:
+    def update(self, category_body: dict, category: Category) -> None:
         pass
     
     @abstractmethod

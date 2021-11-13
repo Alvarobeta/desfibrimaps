@@ -60,3 +60,34 @@ Si tienes cualquier duda, problema, o necesitas algo de orientación puedes escr
 
 Un saludo.
 
+
+
+
+Ya que el puesto es de back, he creado un diseño mínimo navegable para centrarme en la api.
+
+Han habido casos en los que he tenido que tomar algunas decisiones de negocio para crear la solución:
+
+Me ha parecido más real que el campo "dead" de un Author sea opcional ya que es una posibilidad 100% real que se daría en una aplicación de gestión de libros
+Existía el problema en el que, debido a que un book debe tener un author y una o varias categories, ¿qué pasa cuando se elimina un author o una category? Pues se podrían dar varios escenarios, entre ellos:
+    - No borrar el book relacionado, si no dejar a null su relación
+    - Borrar el book relacionado 
+Debido a los problemas que he tenido que me han impedido trabajar todo lo que tenía planeado en esta prueba, me he decantado por la opción de borrar la relación. Era la más sencilla y rápida.
+Si hubiera desarrollado la otra, podría haberme decantado por varias soluciones, entre ellas:
+    - En el handler correspondiente (si elimino author, en el delete_author_handler) debería de haber buscado el book asociado y haberlo eliminado mediante el book_repository. En el caso de category habría sido más complicado ya que al poder tener más de una, solo debería de eliminar el book si la category que se está eliminando es la última que tiene ese book asociada.
+    - Eliminar el author/category y lanzar un evento con el id del author/category eliminado para que, desde un suscriber se pueda recibir dicho evento y eliminar el book correspondiente.
+
+Trabajo que me habría gustado aplicar:
+    - Inyección de dependencias mejorada, "Injector" y creando un "service_module" para hacer el binding deseado, algo como:
+    
+    ...
+    class ServicesModule(Module):
+
+    def configure(self, binder):
+        binder.bind(BookRepository, to=BookRepositoryDjango(), scope=singleton)
+        binder.bind(AuthorRepository, to=AuthorRepositoryDjango(), scope=singleton)
+    ...
+
+    - Gestión de usuarios, registro, login, etc.
+    - Serializar los datos de entrada, tanto para el create como para el update.
+    - Gestión de excepciones
+    - Ordenacion y búsqueda

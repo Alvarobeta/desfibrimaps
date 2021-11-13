@@ -16,4 +16,6 @@ class BooksView(APIView):
         return render(request, 'book_create.html', {'form': BookForm()})
 
     def post(self, request):
-        return BooksViewCore().post(request=request)
+        return BooksViewCore().post(
+            request=request
+        )

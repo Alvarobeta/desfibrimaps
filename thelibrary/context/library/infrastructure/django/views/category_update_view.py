@@ -13,11 +13,16 @@ class CategoryUpdateView(APIView):
 
         return render(request, 'category_update.html', {'form': CategoryForm(instance=result)})
         
-    def put(self, request, category_id: int):        
+    def put(self, request, category_id: int):     
+        category = {
+            "name": request.data['name'],
+            "description": request.data['description']
+        }   
+
         update_category_handler = UpdateCategoryHandler(category_repository=CategoryRepositoryDjango())
-        response = update_category_handler(request=request, category_id=category_id)  
+        response = update_category_handler(category_id=category_id, category_body=category)  
         
-        if response.status_code != 201:
+        if response.status_code != 200:
             error_message = "Something went wrong with the category update, please check all required fields."
             return render(request, 'category_update.html', {'form': CategoryForm(), 'error_message': error_message})
 

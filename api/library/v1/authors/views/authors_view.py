@@ -16,5 +16,7 @@ class AuthorsView(APIView):
         return render(request, 'author_create.html', {'form': AuthorForm()})
 
     def post(self, request):
-        return AuthorsViewCore().post(request=request)
+        return AuthorsViewCore().post(
+            request=request
+        )
         

@@ -16,4 +16,6 @@ class CategoriesView(APIView):
         return render(request, 'category_create.html', {'form': CategoryForm()})
 
     def post(self, request):
-        return CategoriesViewCore().post(request=request)
+        return CategoriesViewCore().post(
+            request=request
+        )

@@ -18,11 +18,11 @@ class AuthorRepository(ABC):
         pass
 
     @abstractmethod
-    def create(self) -> Author:
+    def create(self, author: dict) -> Author:
         pass
     
     @abstractmethod
-    def update(self, author: Author) -> None:
+    def update(self, author_body: dict, author: Author) -> None:
         pass
 
     @abstractmethod

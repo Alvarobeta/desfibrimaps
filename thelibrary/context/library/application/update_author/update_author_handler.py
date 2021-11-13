@@ -1,8 +1,5 @@
-# from injector import inject
 from rest_framework import response, status
 from thelibrary.context.library.domain.author import AuthorRepository
-from thelibrary.context.library.infrastructure.django.repositories.author_repository_django import AuthorRepositoryDjango
-
 
 class UpdateAuthorHandler:
     def __init__(
@@ -12,9 +9,9 @@ class UpdateAuthorHandler:
         self.author_repository = author_repository
 
 
-    def __call__(self, request, author_id: int):   
+    def __call__(self, author_id: int, author_body: dict):   
         author = self.author_repository.find_one_by_id(author_id=author_id)
-        self.author_repository.update(request, author)
+        self.author_repository.update(author_body=author_body, author=author)
 
-        return response.Response(status=status.HTTP_201_CREATED, data={'author': author})
+        return response.Response(status=status.HTTP_200_OK, data={'author': author})
 

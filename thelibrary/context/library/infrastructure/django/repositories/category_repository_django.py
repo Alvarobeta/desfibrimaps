@@ -10,6 +10,11 @@ class CategoryRepositoryDjango(CategoryRepository):
         
         return categories if categories else None
 
+    def find_categories_by_ids(self, category_ids: List[str]) -> Optional[List[Category]]:        
+        categories = Category.objects.filter(id__in=category_ids)
+        
+        return categories if categories else None
+
     def find_one_by_id(self, category_id: int) -> Optional[Category]:
         category = Category.objects.filter(pk=category_id).first()
 
@@ -18,18 +23,18 @@ class CategoryRepositoryDjango(CategoryRepository):
     def count(self) -> int:
         return Category.objects.all().count()
 
-    def create(self, request) -> Category:
+    def create(self, category: dict) -> Category:
         category = Category.objects.create(
-            name=request.data['name'],
-            description=request.data['description'] if request.data['description'] else None
+            name=category['name'],
+            description=category['description']
         )
 
         return category
 
-    def update(self, request, category: Category) -> None:
+    def update(self, category_body: dict, category: Category) -> None:
         category.update(            
-            name=request.data['name'],
-            description=request.data['description']
+            name=category_body['name'],
+            description=category_body['description']
         )
         category.save()
 

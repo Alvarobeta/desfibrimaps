@@ -12,7 +12,7 @@ class AuthorsListView(APIView):
         get_authors_list_handler = GetAuthorsHandler(author_repository=AuthorRepositoryDjango())
         result = get_authors_list_handler()    
         
-        paginator = Paginator(result, 10) # Show 10 Books per page.
+        paginator = Paginator(result.data['authors'], 10) # Show 10 Books per page.
         page_number = request.GET.get('page')
         author_list = paginator.get_page(page_number)
 
@@ -21,8 +21,17 @@ class AuthorsListView(APIView):
 
 class AuthorsView(APIView):
     def post(self, request):
-        create_author_handler = CreateAuthorHandler(author_repository=AuthorRepositoryDjango())
-        response = create_author_handler(request=request)
+        author = {
+            "full_name": request.data['full_name'],
+            "pseudonym": request.data['pseudonym'],
+            "born": request.data['born'],
+            "died": request.data['died'] if request.data['died'] else None
+        }
+
+        create_author_handler = CreateAuthorHandler(
+            author_repository=AuthorRepositoryDjango()
+        )
+        response = create_author_handler(author=author)
 
         if response.status_code != 201:
             error_message = "Something went wrong with the author creation, please check all required fields."

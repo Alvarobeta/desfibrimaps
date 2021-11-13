@@ -12,7 +12,7 @@ class CategoriesListView(APIView):
         get_categories_list_handler = GetCategoriesHandler(category_repository=CategoryRepositoryDjango())
         result = get_categories_list_handler()    
 
-        paginator = Paginator(result, 10) # Show 10 Books per page.
+        paginator = Paginator(result.data['categories'], 10) # Show 10 Books per page.
         page_number = request.GET.get('page')
         category_list = paginator.get_page(page_number)
 
@@ -21,8 +21,13 @@ class CategoriesListView(APIView):
 
 class CategoriesView(APIView):
     def post(self, request):
+        category = {
+            "name": request.data['name'],
+            "description": request.data['description'] if request.data['description'] else None
+        }
+
         create_category_handler = CreateCategoryHandler(category_repository=CategoryRepositoryDjango())
-        response = create_category_handler(request=request)
+        response = create_category_handler(category=category)
 
         if response.status_code != 201:
             error_message = "Something went wrong with the category creation, please check all required fields."

@@ -12,12 +12,10 @@ class CreateAuthorHandler:
         self.author_repository = author_repository
 
 
-    def __call__(self, request):        
-        form = AuthorForm(request.POST)
-        if form.is_valid():
-            
-            author = self.author_repository.create(request)
-            if author:
-                return response.Response(status=status.HTTP_201_CREATED)
+    def __call__(self, author: dict):
+        author = self.author_repository.create(author=author)
+        
+        if author:
+            return response.Response(status=status.HTTP_201_CREATED)
 
         return response.Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)

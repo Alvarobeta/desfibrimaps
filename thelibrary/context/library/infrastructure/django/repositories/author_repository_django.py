@@ -18,22 +18,22 @@ class AuthorRepositoryDjango(AuthorRepository):
     def count(self) -> int:
         return Author.objects.all().count()
 
-    def create(self, request) -> Author:
+    def create(self, author: dict) -> Author:
         author = Author.objects.create(
-            full_name=request.data['full_name'],
-            pseudonym=request.data['pseudonym'],
-            born=request.data['born'],
-            died=request.data['died'] if request.data['died'] else None
+            full_name=author['full_name'],
+            pseudonym=author['pseudonym'],
+            born=author['born'],
+            died=author['died']
         )
 
         return author
 
-    def update(self, request, author: Author) -> None:
+    def update(self, author_body: dict, author: Author) -> None:
         author.update(
-            full_name=request.data['full_name'],
-            pseudonym=request.data['pseudonym'],
-            born=request.data['born'] if request.data['born'] else None,
-            died=request.data['died'] if request.data['died'] else None
+            full_name=author_body['full_name'],
+            pseudonym=author_body['pseudonym'],
+            born=author_body['born'],
+            died=author_body['died']
         )
         author.save()
 

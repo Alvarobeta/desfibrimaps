@@ -11,9 +11,9 @@ class UpdateCategoryHandler:
         self.category_repository = category_repository
 
 
-    def __call__(self, request, category_id: int):   
+    def __call__(self, category_id: int, category_body: dict):   
         category = self.category_repository.find_one_by_id(category_id=category_id)
-        self.category_repository.update(request, category)
+        self.category_repository.update(category_body=category_body, category=category)
 
-        return response.Response(status=status.HTTP_201_CREATED, data={'category': category})
+        return response.Response(status=status.HTTP_200_OK, data={'category': category})
 

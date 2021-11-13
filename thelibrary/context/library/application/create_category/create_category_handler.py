@@ -12,12 +12,9 @@ class CreateCategoryHandler:
         self.category_repository = category_repository
 
 
-    def __call__(self, request):        
-        form = CategoryForm(request.POST)
-        if form.is_valid():
-            
-            category = self.category_repository.create(request)
-            if category:
-                return response.Response(status=status.HTTP_201_CREATED)
+    def __call__(self, category: dict):        
+        category = self.category_repository.create(category)
+        if category:
+            return response.Response(status=status.HTTP_201_CREATED)
 
         return response.Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
