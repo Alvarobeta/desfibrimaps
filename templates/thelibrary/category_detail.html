@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Category detail</h1>
+
+<div class="row">
+  <div class="col-md-2 col-xs-12 col-sm-2">
+    <span>Name:</span>
+  </div>
+  <div class="col-md-2 col-xs-2 col-sm-2">
+    {{page_obj.name}}
+  </div>
+</div>
+</br>
+
+<div class="row">
+  <div class="col-md-2 col-xs-12 col-sm-2">
+    <span>Description:</span>
+  </div>
+  <div class="col-md-2 col-xs-2 col-sm-2">
+    {%if page_obj.description%}
+      {{page_obj.description}}
+    {% else %}
+      -
+    {% endif %}
+  </div>
+</div>
+</br>
+
+<div class="row">
+  <div class="col-md-12 col-xs-12 col-sm-12">    
+    <a class="btn btn-large btn-primary" href="{% url 'category_update' page_obj.id %}">Edit category</a>
+  </div>       
+</div>
+</br>
+
+<div class="row">
+  <div class="col-md-12 col-xs-12 col-sm-12">
+    <form action="{% url 'category_delete' page_obj.id %}" method="POST">
+      {% csrf_token %}
+      <input class="btn btn-large btn-secondary" type="submit" action="" value="Delete category" />
+    </form>
+  </div>  
+</div> 
+{% endblock %}

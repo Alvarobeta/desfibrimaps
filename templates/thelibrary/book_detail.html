@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Book detail</h1>
+
+<div class="row">
+  <div class="col-md-2 col-xs-12 col-sm-2">
+    <span>ISBN:</span>
+  </div>
+  <div class="col-md-2 col-xs-2 col-sm-2">
+    {{page_obj.isbn}}
+  </div>
+</div>
+</br>
+
+<div class="row">
+  <div class="col-md-2 col-xs-12 col-sm-2">
+    <span>Title:</span>
+  </div>
+  <div class="col-md-2 col-xs-2 col-sm-2">
+    {{page_obj.title}}
+  </div>
+</div>
+</br>
+
+<div class="row">
+  <div class="col-md-2 col-xs-12 col-sm-2">
+    <span>Author:</span>
+  </div>
+  <div class="col-md-2 col-xs-2 col-sm-2">
+    {{page_obj.author.full_name}}
+  </div>
+</div>
+</br>
+
+<div class="row">
+  <div class="col-md-2 col-xs-12 col-sm-2">
+    <span>Category:</span>
+  </div>
+  <div class="col-md-2 col-xs-2 col-sm-2">
+    {{page_obj.get_categories_names}}
+  </div>
+</div>
+</br>
+
+<div class="row">
+  <div class="col-md-2 col-xs-12 col-sm-2">
+    <span>Description:</span>
+  </div>
+  <div class="col-md-2 col-xs-2 col-sm-2">
+    {{page_obj.description}}
+  </div>
+</div>
+</br>
+
+<div class="row">
+  <div class="col-md-12 col-xs-12 col-sm-12">
+    <a class="btn btn-large btn-primary" href="{% url 'book_update' page_obj.id %}">Edit Book</a>
+  </div>  
+</div>
+</br>
+
+<div class="row">
+  <div class="col-md-12 col-xs-12 col-sm-12">
+    <form action="{% url 'book_delete' page_obj.id %}" method="POST">
+      {% csrf_token %}
+      <input class="btn btn-large btn-secondary" type="submit" action="" value="Delete book" />
+    </form>
+  </div>  
+</div>
+{% endblock %}

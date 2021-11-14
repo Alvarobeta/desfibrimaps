@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'desfibrimaps.infrastructure.django.apps.DesfibrimapsApp'
+    'rest_framework',
+    'thelibrary.infrastructure.django.apps.TheLibraryApp'
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates/desfibrimaps'],
+        'DIRS': ['templates/thelibrary'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,7 +80,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': "desfibrimaps",
+        'NAME': "thelibrary",
         'HOST': 'database',
         'PORT': 3306,
         'USER': os.environ.get('DATABASE_USER'),
@@ -122,5 +123,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+STATICFILES_DIRS = (
+  os.path.join(BASE_DIR, 'static'),
+)
 
 STATIC_URL = '/static/'

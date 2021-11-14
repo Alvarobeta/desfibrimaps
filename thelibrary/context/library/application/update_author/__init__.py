@@ -1,0 +1,1 @@
+from .update_author_handler import UpdateAuthorHandler

@@ -1,9 +1,11 @@
 FROM python:3.7
 LABEL maintainer="alvaromr91@gmail.com"
 
+WORKDIR /app
 COPY ./ /app
 
-WORKDIR /app
+ENV PYTHONUNBUFFERED 1
+
 
 RUN python -m pip install --upgrade pip
 

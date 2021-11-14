@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Category update</h1>
+
+<div class="row">
+    <div class="col-md-10 col-xs-10 col-sm-10">
+        <form method="POST" novalidate>
+            {% csrf_token %}
+            <table>
+                {{form.as_table}}
+            </table>
+            <button type="submit" class="btn btn-primary">Update</button>
+            {% if error_message %}
+                <p>{{error_message}}</p>
+            {% endif%}
+        </form>
+        <br>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 col-xs-10 col-sm-10 ">
+        <br />
+        <h6>*Required fields</h6>
+        <ul>
+            <li>Name</li>
+        </ul>
+    </div>    
+</div>
+{% endblock %}

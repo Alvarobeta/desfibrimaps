@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+    
+    <h1>The Library</h1>
+
+    <p>This app was developed with a huge amount of love and trying to use the best practices I've learned so far.</p>
+    <p>I hope you enjoy it.</p>
+
+    <h2>Overview</h2>
+    <div class="row">
+        <div class="col-md-2 col-xs-12 col-sm-2">
+            Total books: {{counts_data.books_count}}
+        </div>
+        <div class="col-md-2 col-xs-12 col-sm-2">
+            <a class="btn btn-large btn-primary" href="{% url 'books_view' %}">Books list</a>
+        </div>
+    </div>
+    </br>
+    <div class="row">
+        <div class="col-md-2 col-xs-12 col-sm-2">
+            Total authors: {{counts_data.authors_count}}
+        </div>
+        <div class="col-md-2 col-xs-12 col-sm-2">
+            <a class="btn btn-large btn-primary" href="{% url 'authors_view' %}">Authors list</a>
+        </div>
+    </div>
+    </br>
+    <div class="row">
+        <div class="col-md-2 col-xs-12 col-sm-2">
+            Total categories: {{counts_data.categories_count}}
+        </div>
+        <div class="col-md-2 col-xs-12 col-sm-2">
+            <a class="btn btn-large btn-primary" href="{% url 'categories_view' %}">Categories list</a>
+        </div>
+    </div>
+    </br> 
+{% endblock %}

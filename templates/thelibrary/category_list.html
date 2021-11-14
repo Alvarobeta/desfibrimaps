@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Category List</h1>
+
+<div class="row">
+  <div class="col-md-12 col-xs-12 col-sm-12">
+    <a class="btn btn-large btn-primary" href="{% url 'category_create' %}">New category</a>
+  </div>
+</div>
+
+{% if category_list %}
+  <table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 20%;">Name</th>
+            <th style="width: 70%;">Description</th>
+            <th style="width: 10%;"></th>
+        </tr>
+    </thead>
+    {% for category in category_list %}
+    <tbody>
+        <tr>
+            <td style="width: 20%;">{{category.name}}</td>
+            {%if category.description%}
+              <td style="width: 70%;">{{category.description}}</td>
+            {% else %}
+              <td style="width: 70%;">-</td>
+            {% endif %}
+            <td style="width: 10%;">
+                <a href="{{ category.get_detail_url }}">Detail</a>
+            </td>
+        </tr>
+    </tbody> 
+    {% endfor %}
+  </table>
+  
+  <div class="pagination">
+    <span class="page-links">
+        {% if category_list.has_previous %}
+            <a href="{{ request.path }}?page={{ category_list.previous_page_number }}">previous</a>
+        {% endif %}
+        <span class="page-current">
+            Page {{ category_list.number }} of {{ category_list.paginator.num_pages }}.
+        </span>
+        {% if category_list.has_next %}
+            <a href="{{ request.path }}?page={{ category_list.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+  </div>
+{% else %}
+  <p>There are no categories available.</p>
+{% endif %}      
+
+{% endblock %}
