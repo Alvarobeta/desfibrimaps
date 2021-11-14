@@ -11,7 +11,7 @@ class CategoryUpdateView(APIView):
         get_category_handler = GetCategoryHandler(category_repository=CategoryRepositoryDjango())
         result = get_category_handler(category_id=category_id)    
 
-        return render(request, 'category_update.html', {'form': CategoryForm(instance=result)})
+        return render(request, 'category_update.html', {'form': CategoryForm(instance=result.data['category'])})
         
     def put(self, request, category_id: int):     
         category = {

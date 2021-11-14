@@ -1,6 +1,4 @@
-from unittest import mock
 from django.test import TestCase
-from django.urls import reverse
 from rest_framework.test import APIClient
 from rest_framework import status
 from thelibrary.infrastructure.django.models import Book, Author, Category

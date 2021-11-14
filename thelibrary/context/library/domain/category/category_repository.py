@@ -22,7 +22,7 @@ class CategoryRepository(ABC):
         pass
 
     @abstractmethod
-    def create(self, category: dict) -> Category:
+    def create(self, category_body: dict) -> Category:
         pass
     
     @abstractmethod
@@ -32,3 +32,4 @@ class CategoryRepository(ABC):
     @abstractmethod
     def delete(self, category: Category) -> None:
         pass
+    

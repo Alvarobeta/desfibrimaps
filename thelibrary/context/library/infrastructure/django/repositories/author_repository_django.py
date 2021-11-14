@@ -18,12 +18,12 @@ class AuthorRepositoryDjango(AuthorRepository):
     def count(self) -> int:
         return Author.objects.all().count()
 
-    def create(self, author: dict) -> Author:
+    def create(self, author_body: dict) -> Author:
         author = Author.objects.create(
-            full_name=author['full_name'],
-            pseudonym=author['pseudonym'],
-            born=author['born'],
-            died=author['died']
+            full_name=author_body['full_name'],
+            pseudonym=author_body['pseudonym'],
+            born=author_body['born'],
+            died=author_body['died']
         )
 
         return author

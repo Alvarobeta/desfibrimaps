@@ -11,7 +11,7 @@ class AuthorUpdateView(APIView):
         get_author_handler = GetAuthorHandler(author_repository=AuthorRepositoryDjango())
         result = get_author_handler(author_id=author_id)    
 
-        return render(request, 'author_update.html', {'form': AuthorForm(instance=result)})
+        return render(request, 'author_update.html', {'form': AuthorForm(instance=result.data['author'])})
         
     def put(self, request, author_id: int):   
         author = {

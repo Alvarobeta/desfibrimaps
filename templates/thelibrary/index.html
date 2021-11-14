@@ -5,32 +5,6 @@
 
     <p>This app was developed with a huge amount of love and trying to use the best practices I've learned so far.</p>
     <p>I hope you enjoy it.</p>
-    <!-- <div class="row">
-        <div class="col-md-12 col-xs-12 col-sm-12">
-            <a href="{% url 'book_create' %}">New book</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 col-xs-12 col-sm-12">
-            <a href="{% url 'author_create' %}">New Author</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 col-xs-12 col-sm-12">
-            <a href="{% url 'authors_view' %}">Authors list</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 col-xs-12 col-sm-12">
-            <a href="{% url 'category_create' %}">New Category</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 col-xs-12 col-sm-12">
-            <a href="{% url 'categories_view' %}">Categories list</a>
-        </div>
-    </div>
-    <br /> -->
 
     <h2>Overview</h2>
     <div class="row">
@@ -59,25 +33,5 @@
             <a class="btn btn-large btn-primary" href="{% url 'categories_view' %}">Categories list</a>
         </div>
     </div>
-    </br>
-
-    <!-- <div class="pagination">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-            {% endif %}
-    
-            <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-            </span>
-    
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
-        </span>
-    </div> -->
-    
-
+    </br> 
 {% endblock %}

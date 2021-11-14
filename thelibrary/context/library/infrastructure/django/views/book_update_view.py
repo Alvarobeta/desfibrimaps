@@ -13,7 +13,7 @@ class BookUpdateView(APIView):
         get_book_handler = GetBookHandler(book_repository=BookRepositoryDjango())
         result = get_book_handler(book_id=book_id)    
 
-        return render(request, 'book_update.html', {'form': BookForm(instance=result)})
+        return render(request, 'book_update.html', {'form': BookForm(instance=result.data['book'])})
         
     def put(self, request, book_id: int):        
         book = {

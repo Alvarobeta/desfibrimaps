@@ -1,3 +1,4 @@
+from rest_framework import response, status
 from thelibrary.context.library.domain.category import CategoryRepository
 
 
@@ -11,4 +12,5 @@ class GetCategoryHandler:
 
     def __call__(self, category_id: int):        
         category = self.category_repository.find_one_by_id(category_id=category_id)
-        return category
+        
+        return response.Response(status=status.HTTP_302_FOUND, data={'category': category})

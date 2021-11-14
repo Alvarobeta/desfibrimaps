@@ -1,5 +1,5 @@
 from rest_framework.views import APIView
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from thelibrary.context.library.application.get_authors.get_author_handler import GetAuthorHandler
 from thelibrary.context.library.application.delete_author import DeleteAuthorHandler
 from thelibrary.context.library.infrastructure.django.repositories.author_repository_django import AuthorRepositoryDjango
@@ -10,11 +10,10 @@ class AuthorView(APIView):
         get_author_handler = GetAuthorHandler(author_repository=AuthorRepositoryDjango())
         result = get_author_handler(author_id=author_id)    
 
-        return render(request, 'author_detail.html', {'page_obj': result})
+        return render(request, 'author_detail.html', {'page_obj': result.data['author']})
     
     def delete(self, request, author_id: int):
         delete_book_handler = DeleteAuthorHandler(author_repository=AuthorRepositoryDjango())
-        delete_book_handler(author_id=author_id)
 
-        return redirect('authors_view')
+        return delete_book_handler(author_id=author_id)
         

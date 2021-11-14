@@ -15,4 +15,4 @@ class IndexView(APIView):
         )
         result = get_index_handler()    
 
-        return render(request, 'index.html', {'counts_data': result})
+        return render(request, 'index.html', {'counts_data': result.data})

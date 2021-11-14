@@ -1,11 +1,6 @@
 from unittest import mock
 from django.test import TestCase
-from django.urls import reverse
-from rest_framework.test import APIClient
 from rest_framework import status
-from unittest import mock
-from thelibrary.context.library.domain.category import category_repository
-from thelibrary.infrastructure.django.models import Category, Author, Category
 from thelibrary.context.library.domain.category.category_repository import CategoryRepository
 from thelibrary.context.library.application.get_categories.get_categories_handler import GetCategoriesHandler
 
@@ -20,4 +15,6 @@ class TestGetCategoriesHandler(TestCase):
         categories = self.category_repository.find_categories.return_value
         response = self.handler()
         self.category_repository.find_categories.assert_called()
+
+        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
         self.assertEqual(response.data['categories'], categories)

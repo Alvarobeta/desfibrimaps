@@ -1,3 +1,4 @@
+from rest_framework import response, status
 from thelibrary.context.library.domain.author import AuthorRepository
 from thelibrary.context.library.domain.book import BookRepository
 from thelibrary.context.library.domain.category import CategoryRepository
@@ -20,4 +21,7 @@ class GetIndexHandler:
         books_count = self.book_repository.count()
         categories_count = self.category_repository.count()
 
-        return {'authors_count':authors_count, 'books_count':books_count, 'categories_count':categories_count}
+        return response.Response(
+            status=status.HTTP_302_FOUND, 
+            data={'authors_count':authors_count, 'books_count':books_count, 'categories_count':categories_count}
+        )

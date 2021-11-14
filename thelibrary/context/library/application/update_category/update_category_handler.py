@@ -1,4 +1,3 @@
-# from injector import inject
 from rest_framework import response, status
 from thelibrary.context.library.domain.category import CategoryRepository
 
@@ -16,4 +15,4 @@ class UpdateCategoryHandler:
         self.category_repository.update(category_body=category_body, category=category)
 
         return response.Response(status=status.HTTP_200_OK, data={'category': category})
-
+        

@@ -1,4 +1,3 @@
-# from typing_extensions import Required
 from rest_framework.views import APIView
 from rest_framework import serializers
 from django.shortcuts import render, redirect
@@ -10,24 +9,13 @@ from thelibrary.context.library.infrastructure.django.repositories.book_reposito
 from thelibrary.context.library.infrastructure.django.repositories.category_repository_django import CategoryRepositoryDjango
 from api.library.v1.books.views.forms import BookForm
 
-# class AuthorPostISerializer(serializers.Serializer):
-#     full_name = serializers.CharField()
-#     pseudonym = serializers.CharField()
-#     born = serializers.DateField()
-#     died = serializers.DateField()
 
-# class CategoryPostISerializer(serializers.Serializer):
-#     name = serializers.CharField()
-#     description = serializers.CharField()
-
-# class BookPostISerializer(serializers.Serializer):
-#     isbn = serializers.CharField()
-#     title = serializers.CharField()
-#     # author = AuthorPostISerializer(required=True)
-#     author = serializers.CharField()
-#     description = serializers.CharField()
-#     categories = serializers.StringListField()
-    # categories = CategoryPostISerializer(required=True)
+class BookPostISerializer(serializers.Serializer):
+    isbn = serializers.CharField()
+    title = serializers.CharField()
+    author = serializers.CharField()
+    description = serializers.CharField()
+    categories = serializers.ListField(allow_empty=False)
 
 class BooksListView(APIView):
     def get(self, request):
@@ -42,12 +30,18 @@ class BooksListView(APIView):
 
 class BooksView(APIView):
     def post(self, request):
-        book = {
-            "isbn": request.data['isbn'],
-            "title": request.data['title'],
-            "author": request.data['author'],
-            "description": request.data['description'],
-            "categories": request.data.getlist('categories')
+        serializer_i = BookPostISerializer(data=request.data)
+
+        if not serializer_i.is_valid():
+            error_message = serializer_i.errors
+            return render(request, 'book_create.html', {'form': BookForm(), 'error_message': error_message})
+
+        book_body = {
+            "isbn": serializer_i.validated_data['isbn'],
+            "title": serializer_i.validated_data['title'],
+            "author": serializer_i.validated_data['author'],
+            "description": serializer_i.validated_data['description'],
+            "categories": serializer_i.validated_data.get('categories')
         }
 
         create_book_handler = CreateBookHandler(
@@ -55,7 +49,7 @@ class BooksView(APIView):
             book_repository=BookRepositoryDjango(), 
             category_repository=CategoryRepositoryDjango()
         )
-        response = create_book_handler(book=book)
+        response = create_book_handler(book_body=book_body)
 
         if response.status_code != 201:
             error_message = "Something went wrong with the book creation, please check all required fields."

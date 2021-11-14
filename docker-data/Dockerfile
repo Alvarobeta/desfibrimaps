@@ -12,8 +12,6 @@ RUN python -m pip install --upgrade pip
 RUN pip install mysqlclient==1.4.4 pymysql
 RUN pip install -r requirements-dev.txt
 
-# ENV PYTHONPATH="/backend-alvaro-martinez:${PYTHONPATH}"
-
 EXPOSE 8000
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

@@ -20,7 +20,7 @@ class BookRepository(ABC):
         pass
     
     @abstractmethod
-    def create(self, book: dict, author: Author, categories: Category) -> Book:
+    def create(self, book_body: dict, author: Author, categories: Category) -> Book:
         pass
     
     @abstractmethod
@@ -30,3 +30,4 @@ class BookRepository(ABC):
     @abstractmethod
     def delete(self, book: Book) -> None:
         pass
+    

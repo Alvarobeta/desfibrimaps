@@ -23,10 +23,10 @@ class CategoryRepositoryDjango(CategoryRepository):
     def count(self) -> int:
         return Category.objects.all().count()
 
-    def create(self, category: dict) -> Category:
+    def create(self, category_body: dict) -> Category:
         category = Category.objects.create(
-            name=category['name'],
-            description=category['description']
+            name=category_body['name'],
+            description=category_body['description']
         )
 
         return category

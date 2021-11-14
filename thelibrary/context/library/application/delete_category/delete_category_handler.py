@@ -13,5 +13,6 @@ class DeleteCategoryHandler:
     def __call__(self, category_id: int):   
         
         category = self.category_repository.find_one_by_id(category_id=category_id)
-        self.category_repository.delete(category)
+        self.category_repository.delete(category=category)
         
+        return response.Response(status=status.HTTP_204_NO_CONTENT)
